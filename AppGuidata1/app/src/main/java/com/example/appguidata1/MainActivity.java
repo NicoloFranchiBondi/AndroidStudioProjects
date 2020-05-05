@@ -2,6 +2,7 @@ package com.example.appguidata1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +13,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
+
+     EditText nome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final EditText nome = (EditText)findViewById(R.id.Nome);
+        nome =  (EditText)findViewById(R.id.Nome);
         Button bpremi = (Button) findViewById(R.id.Premi);
         Button reset = (Button) findViewById(R.id.Reset);
 
@@ -40,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        final  int REQUEST_CODE = 1;
+        if((requestCode == REQUEST_CODE) && (resultCode == Activity.RESULT_OK)){
+            String message=data.getStringExtra("nome");
+            nome.setText(message);
+        }
+    }
+
     public void sendMessage(View view){
         EditText nome = (EditText)findViewById(R.id.Nome);
         String NomeUtente = nome.getText().toString();
@@ -48,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Nome", NomeUtente);
         startActivity(intent);
     }
+
 
 
 }

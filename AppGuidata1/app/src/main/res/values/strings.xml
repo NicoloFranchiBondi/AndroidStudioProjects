@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppGuidata1</string>
+    <string name="Testo">TextView</string>
+    <string name="GoTo3rd">GoTo3rd</string>
 </resources>
